@@ -5,6 +5,7 @@
   font-weight: 600;
   font-size: 11px;
   line-height: 1.36;
+  background-color: $contrastColor;
 
   @media screen and (min-width: $tablet) {
     padding-top: 56px;
@@ -40,7 +41,7 @@
     margin-top: 35px;
   }
 
-  & > svg {
+  &>svg {
     margin-right: 6px;
   }
 }
@@ -56,7 +57,7 @@
     align-self: baseline;
   }
 
-  & > .strip {
+  &>.strip {
     width: 60px;
     height: 1px;
     background-color: $ordinaryColor;
