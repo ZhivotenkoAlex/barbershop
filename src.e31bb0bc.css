@@ -27,11 +27,6 @@ body {
   font-family: "Open Sans", sans-serif;
   letter-spacing: 0.02em;
 }
-@media screen and (max-width: 479px) {
-  body {
-    width: max-content;
-  }
-}
 
 .container {
   margin-left: auto;
@@ -173,6 +168,7 @@ img {
     width: 100%;
     height: 100%;
     background-color: rgba(25, 28, 38, 0.2);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16), 0px 2px 4px rgba(0, 0, 0, 0.08), 0px 4px 8px rgba(0, 0, 0, 0.04);
   }
 }
 
@@ -186,6 +182,7 @@ img {
     min-height: 796px;
     padding: 118px 40px;
     background-color: #ffffff;
+    box-shadow: -1px 0px 3px rgba(0, 0, 0, 0.16), -2px 0px 4px rgba(0, 0, 0, 0.08), -4px 0px 8px rgba(0, 0, 0, 0.04);
     opacity: 0;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -378,7 +375,7 @@ img {
   width: 100%;
   height: 100%;
   background: linear-gradient(to right, #ffffff 50%, #111319 50%);
-  z-index: -2;
+  z-index: 1;
 }
 @media screen and (max-width: 767px) {
   .hero-section {
@@ -393,6 +390,7 @@ img {
   padding-bottom: 183px;
   margin-right: auto;
   margin-left: auto;
+  z-index: 2;
 }
 @media screen and (max-width: 767px) {
   .hero-container {
@@ -1804,24 +1802,10 @@ body {
     padding-bottom: 56px;
   }
 }
-.page-footer-container {
+.page-footer .container {
   display: flex;
   flex-grow: 1;
   justify-content: space-between;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-@media screen and (min-width: 768px) {
-  .page-footer-container {
-    margin-left: 40px;
-    margin-right: 40px;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .page-footer-container {
-    margin-left: 55px;
-    margin-right: 55px;
-  }
 }
 
 .copyright {
@@ -1830,7 +1814,7 @@ body {
   color: #9da4bd;
   letter-spacing: 0.2em;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 767px) {
   .copyright {
     margin-top: 35px;
   }
@@ -1870,7 +1854,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 108, 0, 0.5);
+  background-color: rgba(255, 108, 0, 0.9);
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
