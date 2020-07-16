@@ -117,83 +117,108 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"js/slider.js":[function(require,module,exports) {
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-  return bundleURL;
-}
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
+// slider = document.querySelector('.hero-container'), // основный элемент блока
+var sliderItems = document.querySelectorAll('.slider-item'),
+    // коллекция .slider-item
+sliderControl = document.querySelector('.slider-control'),
+    // блок елементов управления
+sliderButtons = document.querySelectorAll('.slider-control-button'),
+    // элементы управления
+sliderButtonPrev = document.querySelector('.btn-prev'),
+    // элемент управления 'Назад'
+sliderButtonNext = document.querySelector('.btn-next'),
+    // элемент управления 'Вперед'
+indicatorItems = document.querySelectorAll('.slider-nav-button'); // элементы управления
+
+var index = 0;
+
+var activeSlide = function activeSlide(n) {
+  var _iterator = _createForOfIteratorHelper(sliderItems),
+      _step;
+
   try {
-    throw new Error();
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      slide = _step.value;
+      slide.classList.remove('active');
+    }
   } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
   }
 
-  return '/';
-}
+  sliderItems[n].classList.add('active');
+};
 
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
+var currentIndicator = function currentIndicator(n) {
+  var _iterator2 = _createForOfIteratorHelper(indicatorItems),
+      _step2;
 
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
+  try {
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+      indicator = _step2.value;
+      indicator.classList.remove('current');
+    }
+  } catch (err) {
+    _iterator2.e(err);
+  } finally {
+    _iterator2.f();
   }
 
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
+  indicatorItems[n].classList.add('current');
+};
 
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
+var prepareCurrentSlide = function prepareCurrentSlide(ind) {
+  activeSlide(ind);
+  currentIndicator(ind);
+}; //функция переключение на следующий слайд
 
-    cssTimeout = null;
-  }, 50);
-}
 
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"sass/main.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
+var nextSlide = function nextSlide() {
+  if (index == sliderItems.length - 1) {
+    index = 0;
+    prepareCurrentSlide(index);
+  } else {
+    index++;
+    prepareCurrentSlide(index);
+  }
+}; //функция переключение на предыдущий слайд
 
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"./..\\fonts\\Raleway-Bold.woff":[["Raleway-Bold.946586da.woff","fonts/Raleway-Bold.woff"],"fonts/Raleway-Bold.woff"],"./..\\images\\mobile-slider-1.jpg":[["mobile-slider-1.d8860e02.jpg","images/mobile-slider-1.jpg"],"images/mobile-slider-1.jpg"],"./..\\images\\mobile-slider-1@2x.jpg":[["mobile-slider-1@2x.69c851b2.jpg","images/mobile-slider-1@2x.jpg"],"images/mobile-slider-1@2x.jpg"],"./..\\images\\tablet-slider-1.jpg":[["tablet-slider-1.73a76a64.jpg","images/tablet-slider-1.jpg"],"images/tablet-slider-1.jpg"],"./..\\images\\tablet-slider-1@2x.jpg":[["tablet-slider-1@2x.4c22fdb2.jpg","images/tablet-slider-1@2x.jpg"],"images/tablet-slider-1@2x.jpg"],"./..\\images\\desktop-slider-1.jpg":[["desktop-slider-1.1459c9d2.jpg","images/desktop-slider-1.jpg"],"images/desktop-slider-1.jpg"],"./..\\images\\desktop-slider-1@2x.jpg":[["desktop-slider-1@2x.617c4db7.jpg","images/desktop-slider-1@2x.jpg"],"images/desktop-slider-1@2x.jpg"],"./..\\images\\mobile-slider-2.jpg":[["mobile-slider-2.9197cc5b.jpg","images/mobile-slider-2.jpg"],"images/mobile-slider-2.jpg"],"./..\\images\\mobile-slider-2@2x.jpg":[["mobile-slider-2@2x.7bbc4375.jpg","images/mobile-slider-2@2x.jpg"],"images/mobile-slider-2@2x.jpg"],"./..\\images\\tablet-slider-2.jpg":[["tablet-slider-2.0fc0d182.jpg","images/tablet-slider-2.jpg"],"images/tablet-slider-2.jpg"],"./..\\images\\tablet-slider-2@2x.jpg":[["tablet-slider-2@2x.f009d727.jpg","images/tablet-slider-2@2x.jpg"],"images/tablet-slider-2@2x.jpg"],"./..\\images\\desktop-slider-2.jpg":[["desktop-slider-2.6fba8bd2.jpg","images/desktop-slider-2.jpg"],"images/desktop-slider-2.jpg"],"./..\\images\\desktop-slider-2@2x.jpg":[["desktop-slider-2@2x.cc9e81eb.jpg","images/desktop-slider-2@2x.jpg"],"images/desktop-slider-2@2x.jpg"],"./..\\images\\mobile-slider-3.jpg":[["mobile-slider-3.9af1ad4b.jpg","images/mobile-slider-3.jpg"],"images/mobile-slider-3.jpg"],"./..\\images\\mobile-slider-3@2x.jpg":[["mobile-slider-3@2x.1bfff821.jpg","images/mobile-slider-3@2x.jpg"],"images/mobile-slider-3@2x.jpg"],"./..\\images\\tablet-slider-3.jpg":[["tablet-slider-3.f5c8c121.jpg","images/tablet-slider-3.jpg"],"images/tablet-slider-3.jpg"],"./..\\images\\tablet-slider-3@2x.jpg":[["tablet-slider-3@2x.90761d04.jpg","images/tablet-slider-3@2x.jpg"],"images/tablet-slider-3@2x.jpg"],"./..\\images\\desktop-slider-3.jpg":[["desktop-slider-3.96e66677.jpg","images/desktop-slider-3.jpg"],"images/desktop-slider-3.jpg"],"./..\\images\\desktop-slider-3@2x.jpg":[["desktop-slider-3@2x.3caca04d.jpg","images/desktop-slider-3@2x.jpg"],"images/desktop-slider-3@2x.jpg"],"./..\\images\\prices-mob.png":[["prices-mob.25af01d2.png","images/prices-mob.png"],"images/prices-mob.png"],"./..\\images\\prices-mob@2x.png":[["prices-mob@2x.ce8499c0.png","images/prices-mob@2x.png"],"images/prices-mob@2x.png"],"./..\\images\\prices-tab.png":[["prices-tab.e194d0bb.png","images/prices-tab.png"],"images/prices-tab.png"],"./..\\images\\prices-tab@2x.png":[["prices-tab@2x.f19dc8ab.png","images/prices-tab@2x.png"],"images/prices-tab@2x.png"],"./..\\images\\prices-desc.png":[["prices-desc.f3df38b1.png","images/prices-desc.png"],"images/prices-desc.png"],"./..\\images\\prices-desc@2x.png":[["prices-desc@2x.5cd90c3a.png","images/prices-desc@2x.png"],"images/prices-desc@2x.png"],"./..\\images\\contacts-m.png":[["contacts-m.ef54a4c7.png","images/contacts-m.png"],"images/contacts-m.png"],"./..\\images\\contacts-m@2x.png":[["contacts-m@2x.5242c3cf.png","images/contacts-m@2x.png"],"images/contacts-m@2x.png"],"./..\\images\\contacts-t.png":[["contacts-t.41faa40f.png","images/contacts-t.png"],"images/contacts-t.png"],"./..\\images\\contacts-t@2x.png":[["contacts-t@2x.95fa739b.png","images/contacts-t@2x.png"],"images/contacts-t@2x.png"],"./..\\images\\contacts-d.png":[["contacts-d.a54515ab.png","images/contacts-d.png"],"images/contacts-d.png"],"./..\\images\\contacts-d@2x.png":[["contacts-d@2x.5b1a758d.png","images/contacts-d@2x.png"],"images/contacts-d@2x.png"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
-"use strict";
 
-require("./sass/main.scss");
-},{"./sass/main.scss":"sass/main.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var prevSlide = function prevSlide() {
+  if (index == 0) {
+    index = sliderItems.length - 1;
+    prepareCurrentSlide(index);
+  } else {
+    index--;
+    prepareCurrentSlide(index);
+  }
+};
+
+indicatorItems.forEach(function (item, indexIndicator) {
+  item.addEventListener('click', function () {
+    index = indexIndicator;
+    prepareCurrentSlide(index);
+  });
+});
+sliderControl.addEventListener('click', function (e) {
+  var target = e.target;
+  Array.from(sliderButtons).forEach(function (item) {
+    item.classList.remove('current');
+  });
+  target.classList.add('current');
+});
+sliderButtonNext.addEventListener('click', nextSlide);
+sliderButtonPrev.addEventListener('click', prevSlide);
+var interval = setInterval(nextSlide, 5000);
+},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -397,5 +422,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/src.e31bb0bc.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/slider.js"], null)
+//# sourceMappingURL=/slider.d16eec5e.js.map
