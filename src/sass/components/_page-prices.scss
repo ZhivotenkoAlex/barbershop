@@ -57,7 +57,11 @@
     width: 90%;
     height: 1px;
     left: 5%;
+<<<<<<< Updated upstream
     bottom: 2px;
+=======
+    bottom: 26%;
+>>>>>>> Stashed changes
     background-color: rgba(157, 164, 189, 0.12);
 }
 
@@ -98,7 +102,11 @@
 
 @media screen and (min-width: $desktop) {
     .overlay {
+<<<<<<< Updated upstream
         background-image: url('../images/prices-desc.png'), linear-gradient(to right, $bgPricesSectColor, $bgPricesSectColor);
+=======
+        background-image: url('../images/prices-desc.png'), linear-gradient(to right, $bgFooterColor, $bgFooterColor);
+>>>>>>> Stashed changes
     }
 }
 
@@ -160,7 +168,11 @@
     text-transform: uppercase;
     cursor: pointer;
     color: $contrastColor;
+<<<<<<< Updated upstream
     transition: color 250ms $transition, background-color 250ms $transition;
+=======
+    transition: color $transition, background-color $transition;
+>>>>>>> Stashed changes
     &:hover,
     &:focus,
     &:active {
