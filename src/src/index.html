@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Мужские и детские стрижки в Киеве, от 200грн., стрижка у стажера - 50грн."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>BarberShop</title>
+    <!-- Нормализация стилей -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/0.6.0/modern-normalize.min.css"
+    />
+
+    <!-- Добавляет шрифты -->
+    <!-- <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Raleway:wght@700&display=swap"
+      rel="stylesheet"
+    /> -->
+  </head>
+
+  <body>
+    <!-- Добавляет шапку страницы -->
+    <include src="./partials/header.html"></include>
+
+    <main>
+      <!-- Герой -->
+      <include src="./partials/hero.html"></include>
+
+      <!-- О нас -->
+      <include src="./partials/about-us.html"></include>
+
+      <!-- Добавляет секцию Услуги и цены -->
+      <include src="./partials/prices.html"></include>
+
+      <!-- Добавляет секцию преимущества -->
+      <include src="./partials/advantages.html"></include>
+      <!-- Добавляет секцию преимущества -->
+      <include src="./partials/masters.html"></include>
+
+      <!-- Добавляет секцию c галереей -->
+      <include src="./partials/gallery.html"></include>
+
+      <!-- Добавляет секцию c формой и контактами -->
+      <include src="./partials/contacts.html"></include>
+    </main>
+
+    <!-- Добавляет футер -->
+    <include src="./partials/footer.html"></include>
+
+    <!-- Добавляет модальное окно с картой -->
+    <include src="./partials/modal-map.html"></include>
+
+    <!-- Скрипт идёт последним в разметке. В нём уже подключен главный SASS-файл. -->
+    <script src="./index.js"></script>
+
+    <!-- Скрипт для шапки -->
+    <script>
+      (() => {
+        const refs = {
+          openMenuBtn: document.querySelector('[data-menu-open]'),
+          recordBtn: document.querySelector('[data-menu-record]'),
+          mobileMenu: document.querySelector('[data-menu]'),
+          aboutUs: document.querySelector('[data-about-us]'),
+          priceList: document.querySelector('[data-price-list]'),
+          master: document.querySelector('[data-master]'),
+          contactLink: document.querySelector('[data-contact]'),
+          overlayMenu: document.querySelector('[data-overlay]'),
+        };
+
+        refs.openMenuBtn.addEventListener('click', toggleMenu);
+        refs.recordBtn.addEventListener('click', toggleMenu);
+        refs.aboutUs.addEventListener('click', toggleMenu);
+        refs.priceList.addEventListener('click', toggleMenu);
+        refs.master.addEventListener('click', toggleMenu);
+        refs.contactLink.addEventListener('click', toggleMenu);
+
+        function toggleMenu() {
+          refs.mobileMenu.classList.toggle('is-open'),
+            refs.openMenuBtn.classList.toggle('is-open'),
+            refs.overlayMenu.classList.toggle('is-open');
+        }
+      })();
+    </script>
+
+    <!-- Скрипт для карты -->
+    <script>
+      function initialize() {
+        if (GBrowserIsCompatible()) {
+          var map = new GMap2(document.getElementById('map_canvas'));
+          map.setCenter(new GLatLng(56.32811, 44.0), 10);
+        }
+      }
+    </script>
+    <script>
+      const refs = {
+        openModalBtn: document.querySelector('[data-modal-open]'),
+        closeModalBtn: document.querySelector('[data-modal-close]'),
+        modal: document.querySelector('[data-modal]'),
+      };
+
+      refs.openModalBtn.addEventListener('click', toggleModal);
+      refs.closeModalBtn.addEventListener('click', toggleModal);
+
+      function toggleModal() {
+        document.body.classList.toggle('modal-open');
+        refs.modal.classList.toggle('is-hidden');
+      }
+    </script>
+    <script src="./js/slider.js"></script>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+<section id="clients-form-ref" class="contact-info">
+    <div class="container">
+        <form class="clients-form" autocomplete="off">
+            <h2>Онлайн-запись</h2>
+            <div>
+                <label class="form-field-item">
+          <input
+            class="form-input"
+            type="text"
+            pattern="^[А-Яа-яЁё\s]+$"
+            name="name"
+            placeholder="&#xa0;"
+            required
+          />
+          <span class="form-label">Имя*</span>
+        </label>
+
+                <label class="form-field-item">
+          <input
+            class="form-input"
+            type="tel"
+            name="tel"
+            pattern="[0-9]{7,10}"
+            placeholder="&#xa0;"
+            minlength="7"
+            maxlength="19"
+            required
+          />
+          <span class="form-label">Телефон*</span>
+        </label>
+            </div>
+
+            <label class="form-field-textarea">
+        <textarea
+          class="form-input"
+          name="message"
+          placeholder="&#xa0;"
+        ></textarea>
+        <span class="form-label-message">сообщение</span>
+      </label>
+
+            <button class="clients-button">отправить</button>
+        </form>
+        <div class="contacts" id="contacts">
+            <h2>Контакты</h2>
+            <div class="contacts-block">
+                <address>
+          <ul>
+            <li class="contacts-address">
+              <button
+                class="contacts-address-button"
+                aria-label="Кнопка, открывающая карту"
+                data-modal-open
+              >
+                <svg width="24" height="24" class="icon-map-pin">
+                  <use href="./images/sprite.svg#icon-map-pin"></use>
+                </svg>
+                ул. Васильковая, 7А Киев, 08132
+              </button>
+            </li>
+            <li class="contacts-footer">
+              <a href="tel:+380441111111" class="contacts-tel">
+                <svg width="24" height="24" class="icon-phone">
+                  <use href="./images/sprite.svg#icon-phone"></use>
+                </svg>
+                +38 044 111 11 11</a
+              >
+            </li>
+            <li class="contacts-footer">
+              <a href="mailto:barbershop@email.com">
+                <svg width="24" height="24" class="icon-mail">
+                  <use href="./images/sprite.svg#icon-mail"></use>
+                </svg>
+                barbershop@email.com</a
+              >
+            </li>
+          </ul>
+        </address>
+                <div class="working-hours">
+                    <div class="working-hours-header">
+                        <span class="strip"></span>
+                        <h3>время работы</h3>
+                    </div>
+                    <p>Ежедневно с 9:00 до 22:00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
