@@ -1,0 +1,130 @@
+// задает ширину для описиния секции
+.descr_wrap {
+    margin-bottom: 44px;
+    @media screen and (min-width: $tablet) {
+        width: 500px;
+    }
+}
+
+// меняет очередность подсекций в десктоп
+.adv_wrap {
+    @media screen and (min-width: $desktop) {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+    }
+}
+
+// стилизирует заглавие секции
+.advant_title {
+    font-family: $textFont;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 1.36;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $ordinaryColor;
+    text-align: center;
+    position: relative;
+    margin-bottom: 20px;
+    display: inline-block;
+    margin-bottom: 20px;
+    margin-left: 80px;
+    position: relative;
+    // Добавляет черту перез заглавием секции
+    &:before {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 7px;
+        left: -80px;
+        background-color: #303030;
+        width: 60px;
+        height: 1px;
+    }
+}
+
+// стилизирует заголовок секции
+.adv_header {
+    margin-bottom: 20px;
+    font-family: $headerFont;
+    font-weight: 700;
+    font-size: 42px;
+    line-height: 1.17;
+    letter-spacing: 0.05em;
+    color: $ordinaryColor;
+}
+
+// Стилизирует описание секции
+.adv_description {
+    font-family: $textFont;
+    font-size: 18px;
+    line-height: 1.67;
+    letter-spacing: 0.02em;
+    color: $textColor;
+}
+
+// Стилизирует список
+.adv_list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    // Задает ширину списка для разных медиапортов
+    @media screen and (min-width: $tablet) {
+        width: 450px;
+        margin-left: auto;
+    }
+    @media screen and (min-width: $desktop) {
+        margin-left: 0;
+        width: 370px;
+    }
+}
+
+// задает ширину и стили элементам списка
+.adv_item {
+    list-style: none;
+    width: calc((100% - 30px) / 2);
+    font-family: $textFont;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 1.36;
+    text-align: center;
+    color: $ordinaryColor;
+    background-color: $bgLightColor;
+    @media screen and (max-width: 1199px) {
+        padding: 20px 32px 20px 32px;
+    }
+    @media screen and (min-width: 1200px) {
+        padding: 20px 18px 20px 18px;
+    }
+    // Задает отступы нечетным элементам списка
+    &:nth-child(2n + 1) {
+        margin-right: 30px;
+        margin-bottom: 30px;
+    }
+    // Задает отступы четным элементам списка
+    &:nth-child(2n + 2) {
+        margin-top: 30px;
+    }
+}
+
+// Стилизирует заголовок элемента
+.adv_num {
+    display: inline;
+    position: relative;
+    font-family: $textFont;
+    font-weight: 700;
+    font-size: 42px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: $ordinaryColor;
+}
+
+// Позиционирует иконку "плюс"
+.icon-plus {
+    position: absolute;
+    top: 25%;
+    right: -10px;
+}
