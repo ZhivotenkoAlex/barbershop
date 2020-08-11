@@ -114,6 +114,15 @@ img {
   z-index: 100;
 }
 
+.header-container {
+  margin-top: 40px;
+}
+@media screen and (min-width: 768px) {
+  .header-container {
+    margin-top: 32px;
+  }
+}
+
 .absolute-block {
   position: absolute;
   top: 0;
@@ -125,18 +134,15 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 40px;
 }
 @media screen and (min-width: 768px) {
   .main-nav {
     justify-content: start;
-    padding-top: 32px;
   }
 }
 
 .icon-logo {
   color: #ffffff;
-  fill: currentColor;
 }
 @media screen and (min-width: 768px) {
   .icon-logo {
@@ -152,7 +158,6 @@ img {
   border: none;
   outline: transparent;
   background-color: transparent;
-  fill: currentColor;
   cursor: pointer;
 }
 .menu-button .icon-menu {
@@ -672,9 +677,11 @@ img {
 }
 
 .slider-control {
+  position: absolute;
+  bottom: 40px;
+  right: 55px;
   display: flex;
   justify-content: flex-end;
-  margin-top: 181px;
 }
 @media screen and (max-width: 767px) {
   .slider-control {
@@ -683,7 +690,7 @@ img {
 }
 @media screen and (min-width: 1280px) {
   .slider-control {
-    margin-top: 145px;
+    right: 40px;
   }
 }
 
@@ -726,7 +733,7 @@ img {
 
 @media screen and (min-width: 1280px) {
   .container-about {
-    padding-right: 70px;
+    margin: 0 auto;
   }
 }
 
@@ -818,7 +825,7 @@ img {
 }
 @media screen and (min-width: 1280px) {
   .description {
-    ont-size: 18px;
+    font-size: 18px;
     line-height: 1.67;
   }
 }
@@ -1855,7 +1862,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 108, 0, 0.9);
+  background-color: rgba(90, 90, 90, 0.9);
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
