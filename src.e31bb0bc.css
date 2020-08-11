@@ -141,6 +141,12 @@ img {
   }
 }
 
+@media screen and (max-width: 767px) {
+  .logo {
+    fill: #ffffff;
+  }
+}
+
 .icon-logo {
   color: #ffffff;
 }
@@ -163,6 +169,11 @@ img {
 .menu-button .icon-menu {
   color: #ffffff;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+@media screen and (max-width: 767px) {
+  .menu-button .icon-menu {
+    fill: #ffffff;
+  }
 }
 .menu-button .icon-close {
   display: none;
