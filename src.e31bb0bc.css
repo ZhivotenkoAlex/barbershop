@@ -109,11 +109,6 @@ img {
   overflow: hidden;
 }
 
-.page-header {
-  position: relative;
-  z-index: 100;
-}
-
 .header-container {
   margin-top: 40px;
 }
@@ -123,11 +118,12 @@ img {
   }
 }
 
-.absolute-block {
+.page-header {
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
+  z-index: 100;
 }
 
 .main-nav {
@@ -474,18 +470,24 @@ img {
 }
 
 .hero-box {
-  max-width: 306px;
+  position: absolute;
 }
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 767px) {
   .hero-box {
     max-width: 355px;
-    margin-left: 240px;
+    left: 31px;
   }
 }
 @media screen and (min-width: 768px) {
   .hero-box {
-    max-width: 475px;
-    margin-left: 200px;
+    max-width: 400px;
+    left: 279px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .hero-box {
+    left: 255px;
+    max-width: 450px;
   }
 }
 
@@ -725,6 +727,7 @@ img {
   text-align: inherit;
   background-color: inherit;
   cursor: pointer;
+  outline: none;
 }
 .slider-control-button::after {
   content: "";
